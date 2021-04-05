@@ -1,0 +1,62 @@
+.container {
+  width: 100%;
+  height: 600px;
+  display: flex;
+}
+.addSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  width: 40%;
+  height: 100%;
+  background-color: grey;
+  position: relative;
+}
+.movieSection {
+  width: 60%;
+  height: 100%;
+  background-color: yellow;
+}
+.formTitle {
+  font-size: 24px;
+}
+.select {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+}
+.input {
+  width: 340px;
+  height: 30px;
+  border-radius: 5px;
+}
+.input2 {
+  width: 160px;
+  margin-right: 20px;
+  height: 30px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.input2:last-child {
+  margin-right: 0;
+}
+
+.btn {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 22px;
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translate(-50%);
+}
+.smallBtn {
+  margin: 0 auto;
+  width: 100px;
+  border-radius: 5px;
+}
+
+.formsPosition {
+}
