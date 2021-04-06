@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.movieItem {
+  width: 620px;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  border-radius: 5px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: grey;
+  margin-bottom: 20px;
+}
+.movieItem:last-child {
+  margin-bottom: 0;
+}
+.btn {
+  width: 72px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: beige;
+}

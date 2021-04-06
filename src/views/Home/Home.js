@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import movieOperations from "../../redux/movieOperation";
 import styles from "./Home.module.css";
+import { useSelector } from "react-redux";
+import { getAllMovies } from "../../redux/movieSelector";
+import MovieItem from "../../components/movieItem/MovieItem";
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
   const [movieName, setMovieName] = useState("");
-  const [date, setDate] = useState(0);
+  const [productionDate, setDate] = useState(0);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [actors, setActors] = useState([]);
   const [format, setFormat] = useState("");
+  const dispatch = useDispatch();
+  const movies = useSelector(getAllMovies);
 
   const onSubmitActorForm = (e) => {
     e.preventDefault();
@@ -22,7 +28,6 @@ const Home = () => {
   };
 
   const nameHandler = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
   const surnameHandler = (e) => {
@@ -42,24 +47,25 @@ const Home = () => {
 
   const onSubmitMainForm = (e) => {
     e.preventDefault();
-    if (!movieName && date && format) {
-      return;
-    }
+
     const movie = {
       movieName,
-      productionDate: parseInt(date),
+      productionDate: parseInt(productionDate),
       format,
       actorsList: actors,
     };
-    setMovies([...movies, movie]);
+
+    dispatch(movieOperations.addMovie(movie));
     setMovieName("");
     setDate(0);
-    setFormat("");
+    setFormat("DEFAULT");
     setActors([]);
   };
+  //================================================================
 
-  console.log(movies);
-  console.log(actors);
+  useEffect(() => {
+    dispatch(movieOperations.getMovies());
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -83,8 +89,9 @@ const Home = () => {
               name="select"
               className={styles.select}
               onInput={selectedFormHandler}
+              defaultValue={"DEFAULT"}
             >
-              <option selected disabled>
+              <option value="DEFAULT" disabled>
                 --Pick an Option--
               </option>
               <option value="value1" className={styles.option}>
@@ -128,7 +135,13 @@ const Home = () => {
         </div>
       </div>
 
-      <div className={styles.movieSection}></div>
+      <div className={styles.movieSection}>
+        <ul className={styles.movieList}>
+          {movies.map((item) => (
+            <MovieItem item={item} key={item._id} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
