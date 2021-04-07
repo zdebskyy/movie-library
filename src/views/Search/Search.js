@@ -31,7 +31,7 @@ const Search = () => {
       <Tabs>
         <TabList>
           <Tab>Search by movie name</Tab>
-          <Tab>Search by actors</Tab>
+          <Tab>Search by actors name or surname</Tab>
         </TabList>
 
         <TabPanel>

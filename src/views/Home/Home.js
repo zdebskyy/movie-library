@@ -13,6 +13,8 @@ const Home = () => {
   const [surname, setSurname] = useState("");
   const [actors, setActors] = useState([]);
   const [format, setFormat] = useState("");
+  const [file, setFile] = useState(null);
+
   const dispatch = useDispatch();
   const movies = useSelector(getAllMovies);
 
@@ -66,6 +68,14 @@ const Home = () => {
   useEffect(() => {
     dispatch(movieOperations.getMovies());
   }, []);
+  //================================================================
+  const onChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+  const submitUploadForm = (e) => {
+    e.preventDefault();
+    console.log(file);
+  };
 
   return (
     <div className={styles.container}>
@@ -133,6 +143,16 @@ const Home = () => {
             </button>
           </form>
         </div>
+        <form className={styles.upload} onSubmit={submitUploadForm}>
+          <input
+            type="file"
+            className={styles.inputUpload}
+            onChange={onChange}
+          />
+          <button type="submit" className={styles.smallBtn}>
+            Upload
+          </button>
+        </form>
       </div>
 
       <div className={styles.movieSection}>

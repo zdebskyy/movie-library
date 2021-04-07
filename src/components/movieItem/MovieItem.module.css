@@ -12,11 +12,14 @@
   align-items: center;
   padding: 10px;
   background-color: grey;
-  margin-bottom: 20px;
+
+  margin-top: 20px;
 }
-.movieItem:last-child {
-  margin-bottom: 0;
+.name {
+  width: 100px;
+  text-align: center;
 }
+
 .btn {
   width: 72px;
   border-radius: 5px;
