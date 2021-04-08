@@ -11,10 +11,12 @@ const items = createReducer([], {
 });
 
 const searchByName = createReducer([], {
-  [movieActions.getMovieByNameSuccess]: (_, { payload }) => payload,
+  [movieActions.getMovieByNameSuccess]: (state, { payload }) => payload,
+  [movieActions.resetMovieSearch]: (state, { payload }) => [],
 });
 const searchByActor = createReducer([], {
-  [movieActions.getMovieByActorSuccess]: (_, { payload }) => payload,
+  [movieActions.getMovieByActorSuccess]: (state, { payload }) => payload,
+  [movieActions.resetActorSearch]: (state, { payload }) => [],
 });
 
 export default combineReducers({ items, searchByName, searchByActor });

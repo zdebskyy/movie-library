@@ -13,6 +13,7 @@
   background-color: rgb(215, 215, 215);
   position: relative;
   border-radius: 5px;
+  padding-top: 20px;
 }
 .movieSection {
   width: 60%;

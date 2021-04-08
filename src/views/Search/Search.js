@@ -6,6 +6,7 @@ import styles from "./Search.module.css";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import movieOperation from "../../redux/movieOperation";
+import movieActions from "../../redux/movieActions";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,12 @@ const Search = () => {
   const movieByName = useSelector(getMovieByName);
   const movieByActor = useSelector(getMovieByActor);
 
+  const onResetMovieSearch = () => {
+    dispatch(movieActions.resetMovieSearch());
+  };
+  const onResetActorSearch = () => {
+    dispatch(movieActions.resetActorSearch());
+  };
   const nameHandler = (e) => {
     setName(e.target.value);
   };
@@ -48,9 +55,18 @@ const Search = () => {
                 value={name}
                 onChange={nameHandler}
               />
-              <button type="submit" className={styles.btn}>
-                Search
-              </button>
+              <div className={styles.btnContainer}>
+                <button type="submit" className={styles.btn}>
+                  Search
+                </button>
+                <button
+                  type="button"
+                  className={styles.btn}
+                  onClick={onResetMovieSearch}
+                >
+                  Reset
+                </button>
+              </div>
             </form>
           </div>
           <div className={styles.movie}>
@@ -86,9 +102,18 @@ const Search = () => {
                 value={actorName}
                 onChange={actorNameHandler}
               />
-              <button type="submit" className={styles.btn}>
-                Search
-              </button>
+              <div className={styles.btnContainer}>
+                <button type="submit" className={styles.btn}>
+                  Search
+                </button>
+                <button
+                  type="button"
+                  className={styles.btn}
+                  onClick={onResetActorSearch}
+                >
+                  Reset
+                </button>
+              </div>
             </form>
           </div>
           <div className={styles.movie}>

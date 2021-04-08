@@ -28,6 +28,9 @@ const uploadFileRequest = createAction("movie/uploadFileRequest");
 const uploadFileSuccess = createAction("movie/uploadFileSuccess");
 const uploadFileError = createAction("movie/uploadFileError");
 
+const resetMovieSearch = createAction("movie/resetMovieSearch");
+const resetActorSearch = createAction("movie/resetActorSearch");
+
 const movieActions = {
   addMovieRequest,
   addMovieSuccess,
@@ -50,6 +53,8 @@ const movieActions = {
   uploadFileRequest,
   uploadFileSuccess,
   uploadFileError,
+  resetMovieSearch,
+  resetActorSearch,
 };
 
 export default movieActions;

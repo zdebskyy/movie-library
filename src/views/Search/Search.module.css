@@ -7,11 +7,18 @@
   text-align: center;
 }
 .btn {
-  margin: 0 auto;
-  width: 300px;
+  width: 146px;
   height: 30px;
   border-radius: 5px;
   margin-bottom: 50px;
+  margin-right: 10px;
+}
+.btn:last-child {
+  margin-right: 0;
+}
+.btnContainer {
+  display: flex;
+  justify-content: center;
 }
 .input {
   width: 300px;
