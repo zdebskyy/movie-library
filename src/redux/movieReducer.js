@@ -3,12 +3,18 @@ import movieActions from "./movieActions";
 import { createReducer } from "@reduxjs/toolkit";
 
 const items = createReducer([], {
-  [movieActions.addMovieSuccess]: (state, { payload }) => [...state, payload],
+  [movieActions.addMovieSuccess]: (state, { payload }) => [payload, ...state],
   [movieActions.removeMovieSuccess]: (state, { payload }) =>
     state.filter((movie) => movie.id !== payload),
   [movieActions.getMovieSuccess]: (_, { payload }) => payload,
+  [movieActions.sortByNameSuccess]: (_, { payload }) => payload,
 });
 
-const search = createReducer([], {});
+const searchByName = createReducer([], {
+  [movieActions.getMovieByNameSuccess]: (_, { payload }) => payload,
+});
+const searchByActor = createReducer([], {
+  [movieActions.getMovieByActorSuccess]: (_, { payload }) => payload,
+});
 
-export default combineReducers({ items, search });
+export default combineReducers({ items, searchByName, searchByActor });

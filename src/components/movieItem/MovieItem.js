@@ -37,7 +37,7 @@ const MovieItem = ({ item }) => {
           <ul>
             Cast:
             {item.actorsList.map((item) => (
-              <li>
+              <li key={item._id}>
                 <span>
                   {item.name} {item.surname}{" "}
                 </span>

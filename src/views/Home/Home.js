@@ -15,6 +15,8 @@ const Home = () => {
   const [format, setFormat] = useState("");
   const [file, setFile] = useState(null);
 
+  console.log();
+
   const dispatch = useDispatch();
   const movies = useSelector(getAllMovies);
 
@@ -69,12 +71,21 @@ const Home = () => {
     dispatch(movieOperations.getMovies());
   }, []);
   //================================================================
+
   const onChange = (e) => {
     setFile(e.target.files[0]);
   };
+
   const submitUploadForm = (e) => {
     e.preventDefault();
+
     console.log(file);
+    dispatch(movieOperations.upload(file));
+  };
+  //============================================================================
+
+  const sortHandler = () => {
+    dispatch(movieOperations.getSortedList());
   };
 
   return (
@@ -146,16 +157,20 @@ const Home = () => {
         <form className={styles.upload} onSubmit={submitUploadForm}>
           <input
             type="file"
+            name="file"
             className={styles.inputUpload}
             onChange={onChange}
           />
-          <button type="submit" className={styles.smallBtn}>
+          <button type="submit" className={styles.uploadBtn}>
             Upload
           </button>
         </form>
       </div>
 
       <div className={styles.movieSection}>
+        <button className={styles.btnSort} onClick={sortHandler}>
+          Sort by name
+        </button>
         <ul className={styles.movieList}>
           {movies.map((item) => (
             <MovieItem item={item} key={item._id} />
@@ -167,3 +182,13 @@ const Home = () => {
 };
 
 export default Home;
+
+{
+  /* <form
+          className={styles.upload}
+          onSubmit={submitUploadForm}
+          action="https://frozen-plains-67322.herokuapp.com/api/movies/upload"
+          method="post"
+          enctype="multipart/form-data"
+        ></form> */
+}

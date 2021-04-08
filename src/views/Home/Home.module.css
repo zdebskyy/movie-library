@@ -10,7 +10,7 @@
   align-items: center;
   width: 40%;
   height: 500px;
-  background-color: grey;
+  background-color: rgb(215, 215, 215);
   position: relative;
   border-radius: 5px;
 }
@@ -54,6 +54,13 @@
   left: 50%;
   transform: translate(-50%);
 }
+.btnSort {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 22px;
+  margin: 0 auto;
+}
 .smallBtn {
   margin: 0 auto;
   width: 100px;
@@ -64,6 +71,12 @@
 .upload {
   display: flex;
   justify-content: space-between;
+}
+
+.uploadBtn {
+  width: 100px;
+  border-radius: 5px;
+  margin-bottom: bottom 0;
 }
 .movieList {
   width: 600px;

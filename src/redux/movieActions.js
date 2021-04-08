@@ -20,6 +20,14 @@ const getMovieByActorRequest = createAction("movie/getActorRequest");
 const getMovieByActorSuccess = createAction("movie/getActorSuccess");
 const getMovieByActorError = createAction("movie/getActorError");
 
+const sortByNameRequest = createAction("movie/sortByNameRequest");
+const sortByNameSuccess = createAction("movie/sortByNameSuccess");
+const sortByNameError = createAction("movie/sortByNameError");
+
+const uploadFileRequest = createAction("movie/uploadFileRequest");
+const uploadFileSuccess = createAction("movie/uploadFileSuccess");
+const uploadFileError = createAction("movie/uploadFileError");
+
 const movieActions = {
   addMovieRequest,
   addMovieSuccess,
@@ -36,6 +44,12 @@ const movieActions = {
   getMovieByActorRequest,
   getMovieByActorSuccess,
   getMovieByActorError,
+  sortByNameRequest,
+  sortByNameSuccess,
+  sortByNameError,
+  uploadFileRequest,
+  uploadFileSuccess,
+  uploadFileError,
 };
 
 export default movieActions;

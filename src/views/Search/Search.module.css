@@ -1,5 +1,41 @@
 .container {
   width: 100%;
-  background-color: grey;
+  background-color: rgb(215, 215, 215);
   margin: 0 auto;
+}
+.searchForm {
+  text-align: center;
+}
+.btn {
+  margin: 0 auto;
+  width: 300px;
+  height: 30px;
+  border-radius: 5px;
+  margin-bottom: 50px;
+}
+.input {
+  width: 300px;
+  height: 30px;
+  font: 1em sans-serif;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.movie {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+}
+.wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.main {
+}
+.actors {
+  width: 100px;
 }
