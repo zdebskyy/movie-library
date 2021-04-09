@@ -15,8 +15,6 @@ const Home = () => {
   const [format, setFormat] = useState("");
   const [file, setFile] = useState(null);
 
-  console.log();
-
   const dispatch = useDispatch();
   const movies = useSelector(getAllMovies);
 
@@ -78,9 +76,9 @@ const Home = () => {
 
   const submitUploadForm = (e) => {
     e.preventDefault();
-
-    console.log(file);
-    dispatch(movieOperations.upload(file));
+    const fd = new FormData();
+    fd.append("file", file, file.name);
+    dispatch(movieOperations.upload(fd));
   };
   //============================================================================
 
@@ -159,6 +157,9 @@ const Home = () => {
             type="file"
             name="file"
             className={styles.inputUpload}
+            encType="multipart/form-data"
+            method="post"
+            action="/api/movies/upload"
             onChange={onChange}
           />
           <button type="submit" className={styles.uploadBtn}>

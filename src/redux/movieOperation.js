@@ -1,8 +1,8 @@
 import axios from "axios";
 import movieActions from "./movieActions";
 
-axios.defaults.baseURL = "https://frozen-plains-67322.herokuapp.com/api/movies";
-// axios.defaults.baseURL = "localhost:3001/api/movies";
+// axios.defaults.baseURL = "https://frozen-plains-67322.herokuapp.com/api/movies";
+axios.defaults.baseURL = "http://localhost:3001/api/movies";
 
 const addMovie = (movie) => (dispatch) => {
   dispatch(movieActions.addMovieRequest());
@@ -20,7 +20,7 @@ const removeMovie = (id) => (dispatch) => {
   axios
     .delete(`/remove-movie/${id}`)
     .then(() => {
-      dispatch(movieActions.removeMovieSuccess());
+      dispatch(movieActions.removeMovieSuccess(id));
     })
     .catch((error) => dispatch(movieActions.removeMovieError(error)));
 };
@@ -76,26 +76,6 @@ const upload = (file) => (dispatch) => {
     })
     .catch((error) => dispatch(movieActions.uploadFileError(error)));
 };
-
-// const upload = (file) => (dispatch) => {
-//   console.log(file);
-//   dispatch(movieActions.uploadFileRequest());
-//   axios
-//     .post({
-//       url: "localhost:3001/api/movies/upload",
-//       data: {
-//         test: file,
-//       },
-//       headers: {
-//         "Content-Type": "text/plain",
-//       },
-//     })
-//     .then((response) => {
-//       console.log(response);
-//       dispatch(movieActions.uploadFileSuccess(response.data));
-//     })
-//     .catch((error) => dispatch(movieActions.uploadFileError(error)));
-// };
 
 const movieOperations = {
   addMovie,

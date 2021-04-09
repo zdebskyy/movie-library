@@ -3,11 +3,9 @@ export const getAllMovies = (state) => {
 };
 
 export const getMovieByName = (state) => {
-  console.log(state);
   return state.movies.searchByName;
 };
 
 export const getMovieByActor = (state) => {
-  console.log(state);
   return state.movies.searchByActor;
 };

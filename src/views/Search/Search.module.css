@@ -34,12 +34,13 @@
   align-items: center;
   justify-content: center;
   width: 600px;
+  height: auto;
 }
 .wrap {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 .main {
 }

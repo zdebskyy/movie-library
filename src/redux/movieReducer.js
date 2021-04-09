@@ -4,8 +4,9 @@ import { createReducer } from "@reduxjs/toolkit";
 
 const items = createReducer([], {
   [movieActions.addMovieSuccess]: (state, { payload }) => [payload, ...state],
-  [movieActions.removeMovieSuccess]: (state, { payload }) =>
-    state.filter((movie) => movie.id !== payload),
+  [movieActions.removeMovieSuccess]: (state, { payload }) => {
+    return state.filter((movie) => movie._id !== payload);
+  },
   [movieActions.getMovieSuccess]: (_, { payload }) => payload,
   [movieActions.sortByNameSuccess]: (_, { payload }) => payload,
 });
