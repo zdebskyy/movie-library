@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import movieOperations from "../../redux/movieOperation";
 import styles from "./MovieItem.module.css";
 
-const MovieItem = ({ item }) => {
-  const dispatch = useDispatch();
+const MovieItem = ({ item, onModalOpen }) => {
   const [open, setOpen] = useState(false);
 
   const onOpen = () => {
     setOpen(!open);
   };
 
-  const removeMovie = (id) => {
-    dispatch(movieOperations.removeMovie(id));
-  };
   return (
     <div className={styles.container}>
       <li className={styles.movieItem}>
@@ -25,7 +19,7 @@ const MovieItem = ({ item }) => {
         <button
           type="button"
           className={styles.btn}
-          onClick={() => removeMovie(item._id)}
+          onClick={() => onModalOpen(item._id)}
         >
           Delete
         </button>

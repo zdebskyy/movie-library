@@ -11,13 +11,14 @@ import Modal from "../../components/Modal/Modal";
 
 const Home = () => {
   const [movieName, setMovieName] = useState("");
-  const [productionDate, setDate] = useState(0);
+  const [productionDate, setDate] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [actors, setActors] = useState([]);
   const [format, setFormat] = useState("");
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState("");
   const [open, setOpen] = useState(false);
+  const [id, setId] = useState("");
 
   const dispatch = useDispatch();
   const movies = useSelector(getAllMovies);
@@ -34,10 +35,10 @@ const Home = () => {
   };
 
   const nameHandler = (e) => {
-    setName(e.target.value);
+    setName(e.target.value.trim());
   };
   const surnameHandler = (e) => {
-    setSurname(e.target.value);
+    setSurname(e.target.value.trim());
   };
 
   //================================================================
@@ -45,7 +46,7 @@ const Home = () => {
     setFormat(e.target[e.target.selectedIndex].text);
   };
   const movieNameHandler = (e) => {
-    setMovieName(e.target.value);
+    setMovieName(e.target.value.trim());
   };
   const movieDate = (e) => {
     setDate(e.target.value);
@@ -66,9 +67,7 @@ const Home = () => {
     setDate("");
     setFormat("");
     setActors([]);
-    toast.success("Movie successfuly added 👌🏻");
   };
-
   //================================================================
 
   useEffect(() => {
@@ -82,32 +81,52 @@ const Home = () => {
 
   const submitUploadForm = (e) => {
     e.preventDefault();
+
+    if (file.size === 0) {
+      toast.error("You cant load an empty file 🤷🏻‍♂️");
+      return;
+    }
     const fd = new FormData();
     fd.append("file", file, file.name);
     dispatch(movieOperations.upload(fd));
-    setFile(null);
+    setFile("");
   };
   //============================================================================
 
   const sortHandler = () => {
     dispatch(movieOperations.getSortedList());
   };
+  //============================================================================
+
+  const onModalOpen = (id) => {
+    setOpen(true);
+    setId(id);
+  };
+  const onModalClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={styles.container}>
+      {open && <Modal id={id} onModalClose={onModalClose} />}
       <div className={styles.addSection}>
         <div className={styles.formsPosition}>
           <form onSubmit={onSubmitMainForm}>
             <p className={styles.formTitle}>Movie name</p>
             <input
+              value={movieName}
               type="text"
+              required
+              minLength="3"
               className={styles.input}
               onChange={movieNameHandler}
             />
             <p className={styles.formTitle}>Production date</p>
             <input
+              value={productionDate}
               min="1850"
               max="2021"
+              required
               type="number"
               className={styles.input}
               onChange={movieDate}
@@ -147,6 +166,7 @@ const Home = () => {
               className={styles.input2}
               placeholder="Name"
               value={name}
+              required
               onInput={nameHandler}
             />
             <input
@@ -154,6 +174,7 @@ const Home = () => {
               className={styles.input2}
               placeholder="Surname"
               value={surname}
+              required
               onInput={surnameHandler}
             />
             <button type="submit" className={styles.smallBtn}>
@@ -171,7 +192,7 @@ const Home = () => {
             action="/api/movies/upload"
             onChange={onChange}
           />
-          <button type="submit" className={styles.uploadBtn}>
+          <button type="submit" className={styles.uploadBtn} disabled={!file}>
             Upload
           </button>
         </form>
@@ -186,7 +207,7 @@ const Home = () => {
         ) : (
           <ul className={styles.movieList}>
             {movies.map((item) => (
-              <MovieItem item={item} key={item._id} />
+              <MovieItem item={item} key={item._id} onModalOpen={onModalOpen} />
             ))}
           </ul>
         )}

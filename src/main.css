@@ -20,6 +20,15 @@ img {
 a {
   text-decoration: none;
 }
+button {
+  border: none;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input {
+  outline: none;
+}
 
 ul {
   list-style: none;

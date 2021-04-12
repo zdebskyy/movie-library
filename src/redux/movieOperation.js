@@ -1,5 +1,7 @@
 import axios from "axios";
 import movieActions from "./movieActions";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // axios.defaults.baseURL = "https://frozen-plains-67322.herokuapp.com/api/movies";
 axios.defaults.baseURL = "http://localhost:3001/api/movies";
@@ -10,9 +12,13 @@ const addMovie = (movie) => (dispatch) => {
   axios
     .post("/add-movie", movie)
     .then((response) => {
+      toast.success("Movie successfuly added 👌🏻");
       dispatch(movieActions.addMovieSuccess(response.data));
     })
-    .catch((error) => dispatch(movieActions.addMovieError(error)));
+    .catch((error) => {
+      toast.error("You cant add duplicate movie");
+      dispatch(movieActions.addMovieError(error));
+    });
 };
 
 const removeMovie = (id) => (dispatch) => {
@@ -20,6 +26,7 @@ const removeMovie = (id) => (dispatch) => {
   axios
     .delete(`/remove-movie/${id}`)
     .then(() => {
+      toast.success("Movie successfuly deleted");
       dispatch(movieActions.removeMovieSuccess(id));
     })
     .catch((error) => dispatch(movieActions.removeMovieError(error)));

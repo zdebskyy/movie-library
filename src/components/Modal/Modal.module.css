@@ -15,3 +15,34 @@
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
 }
+
+.container {
+  width: 400px;
+  height: 150px;
+  background-color: grey;
+  border-radius: 5px;
+  padding: 20px;
+}
+.modalTitle {
+  text-align: center;
+  font: 2rem sans-serif;
+  margin-bottom: 24px;
+  color: white;
+}
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  width: 120px;
+  height: 40px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: white;
+  margin-right: 30px;
+  font-size: 22px;
+  border: none;
+}
+.btn:last-child {
+  margin-right: 0;
+}
