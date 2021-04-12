@@ -69,29 +69,33 @@ const Search = () => {
               </div>
             </form>
           </div>
-          <div className={styles.movie}>
-            {movieByName.map((item) => (
-              <div key={item._id} className={styles.wrap}>
-                <div className={styles.main}>
-                  <span>Movie name: {item.movieName}</span>
-                  <p>Production date: {item.productionDate}</p>
-                  <p>Format: {item.format}</p>
+          {movieByName.length < 1 ? (
+            <p className={styles.noContent}>No content</p>
+          ) : (
+            <div className={styles.movie}>
+              {movieByName.map((item) => (
+                <div key={item._id} className={styles.wrap}>
+                  <div className={styles.main}>
+                    <span>Movie name: {item.movieName}</span>
+                    <p>Production date: {item.productionDate}</p>
+                    <p>Format: {item.format}</p>
+                  </div>
+                  <div className={styles.actors}>
+                    <ul>
+                      Cast:
+                      {item.actorsList.map((item) => (
+                        <li key={item._id}>
+                          <span>
+                            {item.name} {item.surname}{" "}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <div className={styles.actors}>
-                  <ul>
-                    Cast:
-                    {item.actorsList.map((item) => (
-                      <li key={item._id}>
-                        <span>
-                          {item.name} {item.surname}{" "}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </TabPanel>
         <TabPanel>
           <div>
@@ -116,29 +120,33 @@ const Search = () => {
               </div>
             </form>
           </div>
-          <div className={styles.movie}>
-            {movieByActor.map((item) => (
-              <div key={item._id} className={styles.wrap}>
-                <div className={styles.main}>
-                  <span>Movie name: {item.movieName}</span>
-                  <p>Production date: {item.productionDate}</p>
-                  <p>Format: {item.format}</p>
+          {movieByActor.length < 1 ? (
+            <p className={styles.noContent}>No content</p>
+          ) : (
+            <div className={styles.movie}>
+              {movieByActor.map((item) => (
+                <div key={item._id} className={styles.wrap}>
+                  <div className={styles.main}>
+                    <span>Movie name: {item.movieName}</span>
+                    <p>Production date: {item.productionDate}</p>
+                    <p>Format: {item.format}</p>
+                  </div>
+                  <div className={styles.actors}>
+                    <ul>
+                      Cast:
+                      {item.actorsList.map((item) => (
+                        <li key={item._id}>
+                          <span>
+                            {item.name} {item.surname}{" "}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <div className={styles.actors}>
-                  <ul>
-                    Cast:
-                    {item.actorsList.map((item) => (
-                      <li key={item._id}>
-                        <span>
-                          {item.name} {item.surname}{" "}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </TabPanel>
       </Tabs>
     </div>

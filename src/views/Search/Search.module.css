@@ -47,3 +47,8 @@
 .actors {
   width: 100px;
 }
+.noContent {
+  text-align: center;
+  font-size: 32px;
+  color: grey;
+}

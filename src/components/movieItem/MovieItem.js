@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import movieOperations from "../../redux/movieOperation";
 import styles from "./MovieItem.module.css";
@@ -12,7 +12,6 @@ const MovieItem = ({ item }) => {
   };
 
   const removeMovie = (id) => {
-    console.log(id);
     dispatch(movieOperations.removeMovie(id));
   };
   return (
