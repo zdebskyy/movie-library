@@ -26,7 +26,7 @@ const removeMovie = (id) => (dispatch) => {
   axios
     .delete(`/remove-movie/${id}`)
     .then(() => {
-      toast.success("Movie successfuly deleted");
+      toast.info("Movie successfuly deleted");
       dispatch(movieActions.removeMovieSuccess(id));
     })
     .catch((error) => dispatch(movieActions.removeMovieError(error)));

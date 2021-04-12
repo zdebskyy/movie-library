@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { getAllMovies } from "../../redux/movieSelector";
 import MovieItem from "../../components/movieItem/MovieItem";
 import Modal from "../../components/Modal/Modal";
+import Select from "../../components/Select/Select";
 
 const Home = () => {
   const [movieName, setMovieName] = useState("");
@@ -15,7 +16,7 @@ const Home = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [actors, setActors] = useState([]);
-  const [format, setFormat] = useState("");
+  const [format, setFormat] = useState("default");
   const [file, setFile] = useState("");
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
@@ -42,8 +43,8 @@ const Home = () => {
   };
 
   //================================================================
-  const selectedFormHandler = (e) => {
-    setFormat(e.target[e.target.selectedIndex].text);
+  const selectedFormHandler = (value) => {
+    setFormat(value);
   };
   const movieNameHandler = (e) => {
     setMovieName(e.target.value.trim());
@@ -65,7 +66,7 @@ const Home = () => {
     dispatch(movieOperations.addMovie(movie));
     setMovieName("");
     setDate("");
-    setFormat("");
+    setFormat("default");
     setActors([]);
   };
   //================================================================
@@ -115,6 +116,7 @@ const Home = () => {
             <p className={styles.formTitle}>Movie name</p>
             <input
               value={movieName}
+              placeholder="Enter movie name"
               type="text"
               required
               minLength="3"
@@ -123,6 +125,7 @@ const Home = () => {
             />
             <p className={styles.formTitle}>Production date</p>
             <input
+              placeholder="Enter production date"
               value={productionDate}
               min="1850"
               max="2021"
@@ -132,25 +135,7 @@ const Home = () => {
               onChange={movieDate}
             />
             <p className={styles.formTitle}>Format</p>
-            <select
-              name="select"
-              className={styles.select}
-              onInput={selectedFormHandler}
-              defaultValue={format}
-            >
-              <option value={format} disabled>
-                --Pick an Option--
-              </option>
-              <option value="value1" className={styles.option}>
-                VHS
-              </option>
-              <option value="value2" className={styles.option}>
-                DVD
-              </option>
-              <option value="value3" className={styles.option}>
-                Blu-Ray
-              </option>
-            </select>
+            <Select format={format} selectedFormHandler={selectedFormHandler} />
             <button
               type="submit"
               disabled={actors.length < 1}
@@ -165,6 +150,7 @@ const Home = () => {
               type="text"
               className={styles.input2}
               placeholder="Name"
+              pattern="[A-Za-z',-]+"
               value={name}
               required
               onInput={nameHandler}
@@ -173,6 +159,7 @@ const Home = () => {
               type="text"
               className={styles.input2}
               placeholder="Surname"
+              pattern="[A-Za-z',-]+"
               value={surname}
               required
               onInput={surnameHandler}
@@ -212,7 +199,7 @@ const Home = () => {
           </ul>
         )}
       </div>
-      <ToastContainer position="top-right" autoClose={2000} />
+      <ToastContainer position="top-right" autoClose={1500} />
     </div>
   );
 };
