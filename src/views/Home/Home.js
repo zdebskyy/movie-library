@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,7 +20,7 @@ const Home = () => {
   const [file, setFile] = useState("");
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
-
+  const fileInput = useRef();
   const dispatch = useDispatch();
   const movies = useSelector(getAllMovies);
 
@@ -30,7 +30,21 @@ const Home = () => {
       name,
       surname,
     };
+    const duplicate = actors.find(
+      (item) => item.surname.toLowerCase() === actor.surname.toLocaleLowerCase()
+    );
+
+    if (duplicate) {
+      toast.warn(
+        "You cant add duplicate actors...(Ви ж мали на увазі прізвище однакове, не імя?)"
+      );
+      setName("");
+      setSurname("");
+      return;
+    }
+
     setActors([...actors, actor]);
+
     setName("");
     setSurname("");
   };
@@ -66,7 +80,7 @@ const Home = () => {
     dispatch(movieOperations.addMovie(movie));
     setMovieName("");
     setDate("");
-    setFormat("default");
+    setFormat(format);
     setActors([]);
   };
   //================================================================
@@ -88,8 +102,9 @@ const Home = () => {
       return;
     }
     const fd = new FormData();
-    fd.append("file", file, file.name);
+    fd.append("file", file, file.name); // почему файл нейм на node берется как extention?
     dispatch(movieOperations.upload(fd));
+    fileInput.current.value = "";
     setFile("");
   };
   //============================================================================
@@ -175,10 +190,8 @@ const Home = () => {
             type="file"
             name="file"
             className={styles.inputUpload}
-            encType="multipart/form-data"
-            method="post"
-            action="/api/movies/upload"
             onChange={onChange}
+            ref={fileInput}
           />
           <button type="submit" className={styles.uploadBtn} disabled={!file}>
             Upload

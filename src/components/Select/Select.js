@@ -9,9 +9,9 @@ const Select = ({ format, selectedFormHandler }) => {
       onInput={(e) =>
         selectedFormHandler(e.target[e.target.selectedIndex].text)
       }
-      defaultValue={format}
+      defaultValue="default"
     >
-      <option value={format} disabled>
+      <option value="default" disabled>
         --Pick an Option--
       </option>
       <option value="value1" className={styles.option}>

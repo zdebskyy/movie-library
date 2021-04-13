@@ -1,7 +1,6 @@
 import axios from "axios";
 import movieActions from "./movieActions";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 // axios.defaults.baseURL = "https://frozen-plains-67322.herokuapp.com/api/movies";
 axios.defaults.baseURL = "http://localhost:3001/api/movies";
