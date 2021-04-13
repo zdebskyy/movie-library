@@ -99,6 +99,7 @@ const Home = () => {
 
     if (file.size === 0) {
       toast.error("You cant load an empty file 🤷🏻‍♂️");
+      fileInput.current.value = "";
       return;
     }
     const fd = new FormData();
