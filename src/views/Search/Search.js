@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { getMovieByName, getMovieByActor } from "../../redux/movieSelector";
 import styles from "./Search.module.css";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { ToastContainer } from "react-toastify";
 import "react-tabs/style/react-tabs.css";
 import movieOperation from "../../redux/movieOperation";
 import movieActions from "../../redux/movieActions";
@@ -105,6 +106,7 @@ const Search = () => {
                 type="text"
                 value={actorName}
                 onChange={actorNameHandler}
+                pattern="[A-ZА-ЯЁЄІЇ][A-Za-zА-яЁёЄєІіЇї',-]+"
               />
               <div className={styles.btnContainer}>
                 <button type="submit" className={styles.btn}>
@@ -149,6 +151,7 @@ const Search = () => {
           )}
         </TabPanel>
       </Tabs>
+      <ToastContainer position="top-right" autoClose={1500} />
     </div>
   );
 };

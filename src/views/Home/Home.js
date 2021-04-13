@@ -47,7 +47,7 @@ const Home = () => {
     setFormat(value);
   };
   const movieNameHandler = (e) => {
-    setMovieName(e.target.value.trim());
+    setMovieName(e.target.value.trimStart());
   };
   const movieDate = (e) => {
     setDate(e.target.value);
@@ -150,7 +150,8 @@ const Home = () => {
               type="text"
               className={styles.input2}
               placeholder="Name"
-              pattern="[A-Za-z',-]+"
+              pattern="[A-ZА-ЯЁЄІЇ][A-Za-zА-яЁёЄєІіЇї',-]+"
+              // pattern="[А-ЯЁЄІЇ][А-яЁёЄєІіЇї]+"
               value={name}
               required
               onInput={nameHandler}
@@ -159,7 +160,7 @@ const Home = () => {
               type="text"
               className={styles.input2}
               placeholder="Surname"
-              pattern="[A-Za-z',-]+"
+              pattern="[A-ZА-ЯЁЄІЇ][A-Za-zА-яЁёЄєІіЇї',-]+"
               value={surname}
               required
               onInput={surnameHandler}

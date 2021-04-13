@@ -49,7 +49,10 @@ const searchByName = (name) => (dispatch) => {
     .then((response) => {
       dispatch(movieActions.getMovieByNameSuccess(response.data));
     })
-    .catch((error) => dispatch(movieActions.getMovieByNameError(error)));
+    .catch((error) => {
+      toast.error("Not found");
+      dispatch(movieActions.getMovieByNameError(error));
+    });
 };
 
 const searchByActorName = (name) => (dispatch) => {
@@ -59,7 +62,10 @@ const searchByActorName = (name) => (dispatch) => {
     .then((response) => {
       dispatch(movieActions.getMovieByActorSuccess(response.data));
     })
-    .catch((error) => dispatch(movieActions.getMovieByActorError(error)));
+    .catch((error) => {
+      toast.error("Not found");
+      dispatch(movieActions.getMovieByActorError(error));
+    });
 };
 
 const getSortedList = () => (dispatch) => {
