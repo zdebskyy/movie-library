@@ -104,6 +104,7 @@ const Home = () => {
     const fd = new FormData();
     fd.append("file", file, file.name); // почему файл нейм на node берется как extention?
     dispatch(movieOperations.upload(fd));
+    toast.success("File uploaded ✔");
     fileInput.current.value = "";
     setFile("");
   };
