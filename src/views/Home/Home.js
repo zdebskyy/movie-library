@@ -38,7 +38,7 @@ const Home = () => {
     );
 
     if (duplicate) {
-      toast.warn("You cant add duplicate actors...");
+      toast.warn("You cant add same actors...");
       setName("");
       setSurname("");
       return;
@@ -153,7 +153,7 @@ const Home = () => {
               onChange={movieDate}
             />
             <p className={styles.formTitle}>Format</p>
-            <Select format={format} selectedFormHandler={selectedFormHandler} />
+            <Select selectedFormHandler={selectedFormHandler} />
             <button
               type="submit"
               disabled={actors.length < 1}
@@ -169,7 +169,6 @@ const Home = () => {
               className={styles.input2}
               placeholder="Name"
               pattern="[A-ZА-ЯЁЄІЇ][A-Za-zА-яЁёЄєІіЇї',-]+"
-              // pattern="[А-ЯЁЄІЇ][А-яЁёЄєІіЇї]+"
               value={name}
               required
               onInput={nameHandler}
