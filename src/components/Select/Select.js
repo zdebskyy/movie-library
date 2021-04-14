@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Select.module.css";
 
-const Select = ({ format, selectedFormHandler }) => {
+const Select = ({ selectedFormHandler }) => {
   return (
     <select
       name="select"

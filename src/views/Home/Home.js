@@ -31,13 +31,14 @@ const Home = () => {
       surname,
     };
     const duplicate = actors.find(
-      (item) => item.surname.toLowerCase() === actor.surname.toLocaleLowerCase()
+      (item) =>
+        item.name.toLowerCase() &&
+        item.surname.toLowerCase() === actor.name.toLocaleLowerCase() &&
+        actor.surname.toLocaleLowerCase()
     );
 
     if (duplicate) {
-      toast.warn(
-        "You cant add duplicate actors...(Ви ж мали на увазі прізвище однакове, не імя?)"
-      );
+      toast.warn("You cant add duplicate actors...");
       setName("");
       setSurname("");
       return;
