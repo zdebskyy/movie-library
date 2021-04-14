@@ -20,7 +20,7 @@ const Modal = ({ onModalClose, id }) => {
     return () => {
       window.removeEventListener("keydown", modalEscCloseFunction);
     };
-  });
+  }, []);
 
   return (
     <div className={styles.overlay}>
