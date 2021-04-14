@@ -5,6 +5,7 @@ import { getMovieByName, getMovieByActor } from "../../redux/movieSelector";
 import styles from "./Search.module.css";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "react-tabs/style/react-tabs.css";
 import movieOperation from "../../redux/movieOperation";
 import movieActions from "../../redux/movieActions";

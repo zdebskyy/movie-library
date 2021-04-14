@@ -16,7 +16,7 @@ const addMovie = (movie) => (dispatch) => {
     })
     .catch((error) => {
       toast.error("You cant add duplicate movie");
-      dispatch(movieActions.addMovieError(error));
+      dispatch(movieActions.addMovieError());
     });
 };
 
@@ -28,7 +28,7 @@ const removeMovie = (id) => (dispatch) => {
       toast.info("Movie successfuly deleted");
       dispatch(movieActions.removeMovieSuccess(id));
     })
-    .catch((error) => dispatch(movieActions.removeMovieError(error)));
+    .catch((error) => dispatch(movieActions.removeMovieError()));
 };
 
 const getMovies = () => (dispatch) => {
@@ -38,7 +38,7 @@ const getMovies = () => (dispatch) => {
     .then((response) => {
       dispatch(movieActions.getMovieSuccess(response.data));
     })
-    .catch((error) => dispatch(movieActions.getMovieError(error)));
+    .catch((error) => dispatch(movieActions.getMovieError()));
 };
 
 const searchByName = (name) => (dispatch) => {
@@ -50,7 +50,7 @@ const searchByName = (name) => (dispatch) => {
     })
     .catch((error) => {
       toast.error("Not found");
-      dispatch(movieActions.getMovieByNameError(error));
+      dispatch(movieActions.getMovieByNameError());
     });
 };
 
@@ -63,7 +63,7 @@ const searchByActorName = (name) => (dispatch) => {
     })
     .catch((error) => {
       toast.error("Not found");
-      dispatch(movieActions.getMovieByActorError(error));
+      dispatch(movieActions.getMovieByActorError());
     });
 };
 
@@ -74,7 +74,7 @@ const getSortedList = () => (dispatch) => {
     .then((response) => {
       dispatch(movieActions.sortByNameSuccess(response.data));
     })
-    .catch((error) => dispatch(movieActions.sortByNameError(error)));
+    .catch((error) => dispatch(movieActions.sortByNameError()));
 };
 
 const upload = (file) => (dispatch) => {
@@ -86,7 +86,7 @@ const upload = (file) => (dispatch) => {
       console.log(response);
       dispatch(movieActions.uploadFileSuccess(response.data));
     })
-    .catch((error) => dispatch(movieActions.uploadFileError(error)));
+    .catch((error) => dispatch(movieActions.uploadFileError()));
 };
 
 const movieOperations = {
