@@ -67,10 +67,10 @@ const searchByActorName = (name) => (dispatch) => {
     });
 };
 
-const getSortedList = () => (dispatch) => {
+const getSortedList = (sort) => (dispatch) => {
   dispatch(movieActions.sortByNameRequest());
   axios
-    .get("/sort-by-name")
+    .get(`/sort-by-name/${sort}`)
     .then((response) => {
       dispatch(movieActions.sortByNameSuccess(response.data));
     })

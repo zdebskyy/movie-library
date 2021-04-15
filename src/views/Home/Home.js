@@ -17,6 +17,7 @@ const Home = () => {
   const [surname, setSurname] = useState("");
   const [actors, setActors] = useState([]);
   const [format, setFormat] = useState("default");
+  const [sort, setSort] = useState("A-Z");
   const [file, setFile] = useState("");
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
@@ -33,8 +34,8 @@ const Home = () => {
     const duplicate = actors.find(
       (item) =>
         item.name.toLowerCase() &&
-        item.surname.toLowerCase() === actor.name.toLocaleLowerCase() &&
-        actor.surname.toLocaleLowerCase()
+        item.surname.toLowerCase() === actor.name.toLowerCase() &&
+        actor.surname.toLowerCase()
     );
 
     if (duplicate) {
@@ -113,7 +114,7 @@ const Home = () => {
   //============================================================================
 
   const sortHandler = () => {
-    dispatch(movieOperations.getSortedList());
+    dispatch(movieOperations.getSortedList(sort));
   };
   //============================================================================
 
@@ -123,6 +124,11 @@ const Home = () => {
   };
   const onModalClose = () => {
     setOpen(false);
+  };
+  //=============================================================================
+
+  const onSortInput = (e) => {
+    setSort(e.target[e.target.selectedIndex].text);
   };
 
   return (
@@ -202,9 +208,20 @@ const Home = () => {
       </div>
 
       <div className={styles.movieSection}>
-        <button className={styles.btnSort} onClick={sortHandler}>
-          Sort by name
-        </button>
+        <div className={styles.sortContainer}>
+          <button className={styles.btnSort} onClick={sortHandler}>
+            Sort by name
+          </button>
+          <select className={styles.sortSelect} onInput={onSortInput}>
+            <option value="value1" className={styles.option}>
+              A-Z
+            </option>
+            <option value="value2" className={styles.option}>
+              Z-A
+            </option>
+          </select>
+        </div>
+
         {movies.length < 1 ? (
           <p className={styles.noContent}>No movies added</p>
         ) : (
